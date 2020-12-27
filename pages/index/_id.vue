@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!$apollo.queries.character.loading"
-    class="rounded border m-2 flex"
+    class="rounded border bg-gray-900 ml-2 flex"
   >
     <img :src="character.image" :alt="character.name" class="p-2 rounded" />
     <div class="p-2">
