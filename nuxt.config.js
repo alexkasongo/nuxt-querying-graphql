@@ -30,6 +30,12 @@ export default {
     // graphQl
     '@nuxtjs/apollo'
   ],
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
+    configPath: 'tailwind.config.js',
+    exposeConfig: false,
+    config: {}
+  },
   apollo: {
     clientConfigs: {
       default: {

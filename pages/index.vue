@@ -4,28 +4,21 @@
       <h1 class="text-4xl font-semi-bold text-gray-800">
         Nuxt.js Querying a GraphQL API
       </h1>
-      <h2 class="text-2xl">
-        {{ character.id }}. {{ character.name }}:
-        {{ character.status }}
-      </h2>
-      <button
-        class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none"
-        @click="characterId = characterId + 1"
-      >
-        Next Character
-      </button>
-      <button
-        class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none"
-        @click="characterId = characterId - 1"
-      >
-        Prev Character
-      </button>
-      <ul v-for="character in characters.results" :key="character.id">
-        <li>
-          {{ character.name }}:
-          {{ character.status }}
-        </li>
-      </ul>
+      <div class="flex" v-if="!$apollo.queries.characters.loading">
+        <ul class="w-64 px-2 text-gray-600">
+          <li v-for="character in characters.results" :key="character.id">
+            <nuxt-link
+              :to="character.id"
+              class="hover: text-bold hover:text-gray-900 leading-loose"
+            >
+              {{ character.name }}:
+            </nuxt-link>
+          </li>
+        </ul>
+        <div class="flex-grow bg-gray-900 min-h-full">
+          <nuxt-child :key="$route.params.id"></nuxt-child>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -49,23 +42,6 @@ export default {
         }
       }
     `,
-    // Dynamic
-    character: {
-      query: gql`
-        query getCharacter($id: ID!) {
-          character(id: $id) {
-            id
-            name
-            status
-          }
-        }
-      `,
-      variables() {
-        return {
-          id: this.characterId,
-        }
-      },
-    },
   },
 }
 </script>
@@ -79,8 +55,8 @@ export default {
 .container {
   margin: 0 auto;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
 }
 </style>
