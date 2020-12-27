@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/16", {data:[{},{}],fetch:[],mutations:void 0});
