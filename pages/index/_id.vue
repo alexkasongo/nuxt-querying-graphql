@@ -38,7 +38,7 @@ export default {
       `,
       variables() {
         return {
-          // if the route.params.id is null make id = 1
+          // if the route.params.id is null make the id = 1
           id: this.$route.params.id || 1,
         }
       },
