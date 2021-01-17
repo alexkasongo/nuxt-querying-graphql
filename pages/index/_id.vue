@@ -19,7 +19,7 @@ import gql from 'graphql-tag'
 export default {
   name: 'CharacterCard',
   apollo: {
-    // Dynamic querying
+    // Dynamic querying 
     character: {
       query: gql`
         query getCharacter($id: ID!) {
@@ -38,7 +38,7 @@ export default {
       `,
       variables() {
         return {
-          // if the route.params.id is === null make the id = 1
+          // if the route.params.id is null make the id = 1
           id: this.$route.params.id || 1,
         }
       },
